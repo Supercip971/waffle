@@ -8,9 +8,9 @@
 #define TEST_PASSED 0
 #define TEST_FAILED 1
 
-static int _test_count = 0;
-static int _test_passed = 0;
-static int _test_failed = 0;
+extern  int _test_count;
+extern  int _test_passed;
+extern  int _test_failed;
 
 #define TEST_ASSERT(condition, message)                                       \
     do {                                                                      \
@@ -41,7 +41,7 @@ static int _test_failed = 0;
 #define TEST_ASSERT_FLOAT_EQ(expected, actual, epsilon, message)              \
     do {                                                                      \
         _test_count++;                                                        \
-        double _diff = (expected) - (actual);                                 \
+        long double _diff = (expected) - (actual);                                 \
         if (_diff < 0) _diff = -_diff;                                        \
         if (_diff > (epsilon)) {                                              \
             printf("  [FAIL] %s:%d: %s (expected %f, got %f)\n",              \

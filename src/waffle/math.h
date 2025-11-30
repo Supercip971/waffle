@@ -4,6 +4,13 @@
 
 
 
+#define FLOAT_MANTISSA_BITS 23
+#define DOUBLE_MANTISSA_BITS 52
+#define LONG_DOUBLE_MANTISSA_BITS 64
+
+#define FLOAT_MANTISSA_ABS_BASE 127
+#define DOUBLE_MANTISSA_ABS_BASE 1023
+#define LONG_DOUBLE_MANTISSA_ABS_BASE 16383
 
 union mfloat_bits {
     float f;
@@ -18,8 +25,8 @@ union mdouble_bits {
     double d;
     struct __attribute__((__packed__)) {
         unsigned long long mantissa : 52;
-        unsigned long long exponent : 11;
-        unsigned long long sign : 1;
+        unsigned int exponent : 11;
+        unsigned int sign : 1;
     } parts;
 };
 
@@ -40,7 +47,9 @@ union mlong_double_bits {
 #  define NAN (__builtin_nanf(""))
 #endif 
 
-/* Core waffle functions (always available with waffle_ prefix) */
+
+
+// --- ABS ---- 
 int waffle_abs(int x);
 long waffle_labs(long j);
 long long waffle_llabs(long long x);
@@ -48,6 +57,20 @@ long long waffle_llabs(long long x);
 double waffle_fabs(double x);
 float waffle_fabsf(float x);
 long double waffle_fabsl(long double x);
+
+
+// ---- trunc ----
+
+float waffle_truncf(float x);
+double waffle_trunc(double x);
+long double waffle_truncl(long double x);
+
+// ---- fmod ----
+
+float waffle_fmodf(float x, float y);
+double waffle_fmod(double x, double y);
+long double waffle_fmodl(long double x, long double y);
+
 
 /* 
  * Define WAFFLE_NO_PREFIX to disable standard name aliases.
@@ -60,4 +83,12 @@ long double waffle_fabsl(long double x);
 #  define fabs   waffle_fabs
 #  define fabsf  waffle_fabsf
 #  define fabsl  waffle_fabsl
+
+#  define fmodf  waffle_fmodf
+#  define fmod   waffle_fmod
+#  define fmodl  waffle_fmodl
+
+#define truncf waffle_truncf
+#define trunc  waffle_trunc
+#define truncl waffle_truncl
 #endif

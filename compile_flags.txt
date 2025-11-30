@@ -1,0 +1,9 @@
+-Isrc/
+-std=c17
+-D__ck_kernel__
+-D__LSP
+-D_NEW
+-Wall
+-Wextra
+-Werror
+-ffreestanding
