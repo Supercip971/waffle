@@ -5,6 +5,7 @@
 
 #include "../waffle/math.h"
 #include <math.h>  /* libc math functions for comparison */
+#include <time.h>
 
 /* Forward declarations */
 void run_fmod_tests(void);
@@ -633,4 +634,13 @@ void run_fmod_tests(void)
     printf("  (Skipping fmodl vs libc tests for now)\n");
 //    RUN_TEST(test_fmodl_vs_libc);
 //    RUN_TEST(test_fmodl_edge_cases_vs_libc);
+
+
+    printf(" ---- benchmarking ----\n");
+//region of code
+
+   
+    BENCHMARK_FUNC(waffle_fmodf(i, 3.14f), 10000000);
+    BENCHMARK_FUNC(fmodf(i, 3.14f), 10000000);
+    
 }

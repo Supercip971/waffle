@@ -11,6 +11,46 @@
 extern  int _test_count;
 extern  int _test_passed;
 extern  int _test_failed;
+#define BENCH_COUNT 10
+
+#define BENCHMARK_FUNC(func, iterations)                                 \
+    do {                                                                  \
+        double deltas[BENCH_COUNT];\
+        for (size_t _i = 0; _i < BENCH_COUNT; _i++) {                                \
+            clock_t start = clock();                                      \
+            volatile int i;                                              \
+            for (i = 0; i < (iterations); i++) {                         \
+                volatile float v = func;                                  \
+                (void)v; /* prevent optimization */                      \
+            }                                                             \
+            clock_t end = clock();                                        \
+            double elapsed = (double)(end - start) / CLOCKS_PER_SEC;     \
+            deltas[_i] = elapsed;                                         \
+        }                                                                 \
+        /* Find minimum time */                                          \
+                                                         \
+        double avg_time = 0.0;                                            \
+        for (size_t _i = 0; _i < BENCH_COUNT; _i++) {                                \
+            avg_time += deltas[_i];                                      \
+        }                                                                 \
+        avg_time /= 10.0;                                                 \
+                                                                           \
+        double delta_sum = 0.0;                                               \
+        for (size_t _i = 0; _i < BENCH_COUNT; _i++) {                                \
+            double diff = deltas[_i] - avg_time;                          \
+            diff *= diff;                                              \
+            delta_sum += diff;                                         \
+                    }                                                 \
+        double stddev = delta_sum / BENCH_COUNT;                                 \
+        double stddev_sqrt = 0.0;                                          \
+        if (stddev > 0.0) {                                               \
+            stddev_sqrt = sqrt(stddev);                                   \
+        }                                                                 \
+                                                                           \
+        printf("  [BENCHMARK] %s: time %f (stddev: %f) over %i iterations\n", \
+               #func, avg_time, (stddev_sqrt), (iterations));               \
+                                                                         \
+    } while (0)
 
 #define TEST_ASSERT(condition, message)                                       \
     do {                                                                      \

@@ -63,3 +63,4 @@ r &= (-1)^{sign_x} \cdot m_x \cdot 2^{e_x} - \text{trunc}\left( (-1)^{sign_x - s
 \end{align*}
 $$
 
+

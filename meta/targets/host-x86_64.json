@@ -10,7 +10,7 @@
             "cmd": "{shell.latest('clang')}",
             "args": [
                 "-std=c23",
-                "-O3",
+                "-O1",
                 "-g"
             ]
         },
@@ -18,7 +18,7 @@
             "cmd": "{shell.latest('clang++')}",
             "args": [
                 "-std=c++23",
-                "-O3",
+                "-O1",
                 "-g"
             ]
         },
