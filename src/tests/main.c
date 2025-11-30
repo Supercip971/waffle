@@ -3,6 +3,7 @@
 /* External test suite functions */
 extern void run_abs_tests(void);
 extern void run_trunc_tests(void);
+extern void run_fmod_tests(void);
 
 
 
@@ -20,6 +21,9 @@ int main(void)
 
     printf("\n\n=== TRUNC FUNCTIONS ===\n\n");
     run_trunc_tests();
+
+    printf("\n\n=== FMOD FUNCTIONS ===\n\n");
+    run_fmod_tests();
 
     TEST_SUMMARY();
     

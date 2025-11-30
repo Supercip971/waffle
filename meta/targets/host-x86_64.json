@@ -9,15 +9,17 @@
         "cc": {
             "cmd": "{shell.latest('clang')}",
             "args": [
-                "-std=gnu23",
-                "-O3"
+                "-std=c23",
+                "-O3",
+                "-g"
             ]
         },
         "cxx": {
             "cmd": "{shell.latest('clang++')}",
             "args": [
                 "-std=c++23",
-                "-O3"
+                "-O3",
+                "-g"
             ]
         },
         "ld": {

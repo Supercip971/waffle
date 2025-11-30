@@ -9,4 +9,10 @@ It is not intended for perfect accuracy in mathematical computations, but rather
 
 Note that each function comes with a markdown file explaining the approximation methods used and their potential limitations.
 
+Also note that Waffle uses custom implementations for many standard functions to optimize performance, which may lead to differences in results compared to standard library functions. But Waffle will always follow the C standard. As an example: 
+
+```c
+> libc_fmodf(5.0f, 0.1f) => 0.1f // (due to precision issues in libc) 
+> waffle_fmodf(5.0f, 0.1f) => 0.0f // (mathematically correct)
+```
 

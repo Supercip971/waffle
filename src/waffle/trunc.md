@@ -1,6 +1,9 @@
 # Trunc 
 
 
+- Trunc: implemented
+- Accuracy: exact 
+
 Let be: 
 
 $$
@@ -71,3 +74,11 @@ $$
 \end{cases}
 $$
 And then apply it to the mantissa bits.
+
+
+## Accuracy
+
+Trunc function only works with bit fields to correctly handle precision and avoid rounding issues.
+
+
+And thus the precision is only limited by the number of bits in the mantissa. 

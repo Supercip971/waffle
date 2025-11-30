@@ -6,7 +6,7 @@ float waffle_truncf(float x)
     fb.f = x;
 
     // If exponent is all 1s or all 0s, return x (NaN or Inf or zero)
-    if (fb.parts.exponent == 0xFF || fb.parts.exponent == 0) {
+    if  (w_unlikely(fb.parts.exponent == 0xFF || fb.parts.exponent == 0)) {
         return x;
     }
 
@@ -33,7 +33,7 @@ double waffle_trunc(double x)
     db.d = x;
 
     // If exponent is all 1s or all 0s, return x (NaN or Inf or zero)
-    if (db.parts.exponent == 0x7FF || db.parts.exponent == 0) {
+    if (w_unlikely(db.parts.exponent == 0x7FF || db.parts.exponent == 0)) {
         return x;
     }
 
@@ -59,7 +59,7 @@ long double waffle_truncl(long double x)
     ldb.ld = x;
 
     // If exponent is all 1s or all 0s, return x (NaN or Inf or zero)
-    if (ldb.parts.exponent == 0x7FFF || ldb.parts.exponent == 0) {
+    if (w_unlikely(ldb.parts.exponent == 0x7FFF || ldb.parts.exponent == 0)) {
         return x;
     }
 

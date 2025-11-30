@@ -3,6 +3,13 @@
 #include <float.h>
 
 
+#ifndef W_NO_UNLIKELY
+#define w_likely(x)       __builtin_expect(!!(x), 1)
+#define w_unlikely(x)     __builtin_expect(!!(x), 0)
+#else 
+#define w_likely(x)       (x)
+#define w_unlikely(x)     (x)
+#endif
 
 #define FLOAT_MANTISSA_BITS 23
 #define DOUBLE_MANTISSA_BITS 52
@@ -73,10 +80,10 @@ long double waffle_fmodl(long double x, long double y);
 
 
 /* 
- * Define WAFFLE_NO_PREFIX to disable standard name aliases.
+ * Define NO_WAFFLE_PREFIX to disable standard name aliases.
  * This is useful when you want to avoid conflicts with system math library.
  */
-#ifndef WAFFLE_NO_PREFIX
+#ifdef NO_WAFFLE_PREFIX
 #  define abs    waffle_abs
 #  define labs   waffle_labs
 #  define llabs  waffle_llabs
