@@ -1,0 +1,8 @@
+{
+    "$schema": "https://schemas.cute.engineering/stable/cutekit.manifest.project.v1",
+    "type": "project",
+    "id": "supercip971/waffle",
+    "description": "A math library",
+    "extern": {}
+}
+

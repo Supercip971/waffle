@@ -1,0 +1,36 @@
+{
+    "$schema": "https://schemas.cute.engineering/stable/cutekit.manifest.component.v1",
+    "id": "host-x86_64",
+    "type": "target",
+    "props": {
+        "host": true
+    },
+    "tools": {
+        "cc": {
+            "cmd": "{shell.latest('clang')}",
+            "args": [
+                "-std=gnu23",
+                "-O3"
+            ]
+        },
+        "cxx": {
+            "cmd": "{shell.latest('clang++')}",
+            "args": [
+                "-std=c++23",
+                "-O3"
+            ]
+        },
+        "ld": {
+            "cmd": "{shell.latest('clang++')}",
+            "args": [
+                "-g"
+            ]
+        },
+        "ar": {
+            "cmd": "{shell.latest('llvm-ar')}",
+            "args": [
+                "rcs"
+            ]
+        }
+    }
+}
